@@ -1,30 +1,33 @@
-.ibox.float-e-margins
-  .ibox-title
-  .ibox-content
-    .row
-      .col-sm-3
-      .col-sm-6
-        h3.m-t-none.m-b Sign up
-        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: 'form',id: "signup_form",class: "m-t"}) do |f|
-          = f.hidden_field :role,value:'restaurant'
-          = devise_error_messages!
-          .form-group
-            = f.label :restaurant_name
-            = text_field_tag :restaurant_name,nil,placeholder: "Restaurant Name",autofocus: true,class: "form-control"
-          .form-group
-            = f.label :country
-            = f.select :country_id, Country.all.collect{|c| [c.name,c.id]},{},class: "form-control"
-          .form-group
-            = f.label :phone
-            = f.text_field :phone,class: 'form-control'
-          .form-group
-            = f.label :email
-            = f.email_field :email, class: 'form-control'
-          .form-group
-            = f.label :password
-            = f.password_field :password, class: 'form-control'
-          .form-group
-            = f.label :password_confirmation
-            = f.password_field :password_confirmation, class: 'form-control'
-          div
-            = f.submit 'Sign up', :class => 'btn btn-sm btn-primary pull-right m-t-n-xs'
+.middle-box.loginscreen.animated.fadeInDown.text-center
+  div
+    div
+      h3.logo-name RT
+    h3 Sign Up
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: 'form',id: "signup_form",class: "m-t"}) do |f|
+      = f.hidden_field :role,value:'restaurant'
+      .text-left.text-danger
+        = devise_error_messages!
+      .form-group.text-left
+        = text_field_tag :restaurant_name,nil,placeholder: "Restaurant Name",autofocus: true,class: "form-control"
+      .form-group.text-left
+        = f.select :country_id, Country.all.collect{|c| [c.name,c.id]},{},class: "form-control"
+      .form-group.text-left
+        label type="button" class="" data-toggle="tooltip" data-placement="auto right" data-content="popup" data-original-title="tooltip" title="Select proper TimeZone to display booking timings in correct timezone"
+          | TimeZone
+        = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones,{},{class: "form-control",id: "current_time_zone"}
+      .form-group.text-left
+        = f.text_field :name,class: 'form-control',placeholder: "Name"
+      .form-group.text-left
+        = f.text_field :phone,class: 'form-control',placeholder: "Phone"
+      .form-group.text-left
+        = f.email_field :email, class: 'form-control',placeholder: "Email"
+      .form-group.text-left
+        = f.password_field :password, class: 'form-control',placeholder: "Password"
+      .form-group.text-left
+        = f.password_field :password_confirmation, class: 'form-control',placeholder: "Password Confirmation"
+      div
+        = f.submit 'Sign up', :class => 'btn btn-primary block full-width m-b'
+        p.text-muted.text-center
+          small Have already an account?
+        = link_to new_user_session_path, class: 'btn btn-sm btn-white btn-block' do
+          small Sign In

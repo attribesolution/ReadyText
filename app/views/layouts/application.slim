@@ -3,7 +3,7 @@ html
   head
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
-    title Table's Ready
+    title Ready Text
     /! Main css styles
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     /! Main javascript files
@@ -11,7 +11,7 @@ html
     = csrf_meta_tags
   body
     /! Skin configuration box
-    = render 'layouts/skinconfig'
+    / = render 'layouts/skinconfig'
     /! Wrapper
     #wrapper class=("<%= params[:controller] %>.<%= params[:action] %>") 
       /! Navigation
@@ -19,7 +19,8 @@ html
       /! Page wraper
       #page-wrapper.gray-bg class=("<%= @extra_class %>") 
         /! Page wrapper
-        = render 'layouts/topnavbar'
+        = render 'layouts/topnavbar' if user_signed_in?
+        == render 'layouts/messages'
         /! Main view
         = yield
         /! Footer

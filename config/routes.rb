@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 	devise_for :users, controllers: {registrations: "users/registrations",passwords: "users/passwords",sessions: "users/sessions"}
   # You can have the root of your site routed with "root"
-  root to: 'dashboards#dashboard_1'
+  root to: 'dashboards#index'
+
+  get "dashboards/index"
 
   # All theme routes
   get "dashboards/dashboard_1"

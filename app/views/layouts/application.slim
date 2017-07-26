@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    title Table's Ready
+    /! Main css styles
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    /! Main javascript files
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    /! Skin configuration box
+    = render 'layouts/skinconfig'
+    /! Wrapper
+    #wrapper class=("<%= params[:controller] %>.<%= params[:action] %>") 
+      /! Navigation
+      = render 'layouts/navigation'
+      /! Page wraper
+      #page-wrapper.gray-bg class=("<%= @extra_class %>") 
+        /! Page wrapper
+        = render 'layouts/topnavbar'
+        /! Main view
+        = yield
+        /! Footer
+        = render 'layouts/footer'
+      /! End page wrapper
+    = include_rails_script

@@ -1,4 +1,11 @@
 class PagesController < ApplicationController
+  skip_before_action :check_subscription  
+  
+  def pricing
+    @walkin_plans = Plan.walkin
+    @marketing_plans = Plan.marketing
+  end
+
   def search_results
   end
 

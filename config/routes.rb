@@ -1,9 +1,36 @@
 Rails.application.routes.draw do
+
+  mount ActionCable.server => '/cable'
+  
 	devise_for :users, controllers: {registrations: "users/registrations",passwords: "users/passwords",sessions: "users/sessions"}
   # You can have the root of your site routed with "root"
   root to: 'dashboards#index'
 
   get "dashboards/index"
+
+  resources :walk_ins do
+    member do
+      post :change_status
+      post :mark_checkin
+      post :send_message
+      post :stop_sequence
+    end
+  end
+
+  resources :subscriptions do
+    collection do
+      post :create_customer
+    end
+  end
+
+  resources :settings do
+    collection do
+      get :profile
+      post :update_profile
+    end
+  end
+
+  get "pricing" => "pages#pricing"
 
   # All theme routes
   get "dashboards/dashboard_1"

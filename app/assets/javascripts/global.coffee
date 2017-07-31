@@ -52,3 +52,30 @@ App.signUpFormValidator = ->
       "user[password_confirmation]":
         required: "Confirm password is required."
         equalTo: "Password and Confirm Password does not match."
+
+
+App.applyIntlInput = ($element) ->
+  $element.intlTelInput
+    initialCountry: 'us'
+    formatOnInit: true
+    separateDialCode: false
+    # onlyCountries: ['us']
+    utilsScript: "assets/libphonenumber/utils.js"
+    geoIpLookup: (callback) ->
+      $.get('https://ipinfo.io', (->
+      ), 'jsonp').always (resp) ->
+        countryCode = if resp and resp.country then resp.country else ''
+        callback countryCode
+        return
+      return
+
+  $element.on 'change', ->
+    App.setIntlValue($element)
+
+  # default set initial value.
+  App.setIntlValue($element)
+
+App.setIntlValue = ($element) ->
+  intlNumber = $element.intlTelInput('getNumber')
+  if intlNumber
+    $element.val intlNumber

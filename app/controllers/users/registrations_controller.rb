@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :check_subscription
   before_action :set_restaurant,only: :create
   before_action :configure_permitted_parameters, if: :devise_controller?
   layout 'empty'

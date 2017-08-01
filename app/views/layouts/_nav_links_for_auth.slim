@@ -20,7 +20,7 @@
       i.fa.fa-clock-o
       span.nav-label Wait List
   li class="#{is_active_controller('reservations')}"
-    = link_to root_path do
+    = link_to reservations_path do
       i.fa.fa-calendar
       span.nav-label Reservation
   li class="#{is_active_controller('messages')}"
@@ -40,7 +40,7 @@
       li class="#{is_active_action('pricing')}"
         = link_to "Pricing","/pricing"
   li class="#{is_active_controller('reports')}"
-    = link_to root_path do
+    = link_to reports_path do
       i.fa.fa-file-text-o
       span.nav-label Reports
 - else

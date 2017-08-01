@@ -30,6 +30,24 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reservations do
+    member do
+      post :change_status
+    end
+
+    collection do
+      # removed import feature for now
+      # get :import
+      post :upload
+    end
+  end
+
+  resources :reports do
+    collection do
+      get :customer_csv
+    end
+  end
+
   get "pricing" => "pages#pricing"
 
   # All theme routes

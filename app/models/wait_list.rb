@@ -1,2 +1,0 @@
-class WaitList < Booking
-end

@@ -16,11 +16,11 @@
       i.fa.fa-th-large
       span.nav-label Dashboard
   li class="#{is_active_controller('walk_ins')}"
-    = link_to root_path do
+    = link_to walk_ins_path do
       i.fa.fa-clock-o
       span.nav-label Wait List
   li class="#{is_active_controller('reservations')}"
-    = link_to root_path do
+    = link_to reservations_path do
       i.fa.fa-calendar
       span.nav-label Reservation
   li class="#{is_active_controller('messages')}"
@@ -34,13 +34,13 @@
       span class="fa arrow"
     ul class="nav nav-second-level collapse"
       li class="#{is_active_action('profile')}"
-        = link_to "Profile",root_path
+        = link_to "Profile",profile_settings_path
       li class="#{is_active_controller('subscriptions')}"
-        = link_to "Subscriptions", root_path
+        = link_to "Subscriptions", subscriptions_path
       li class="#{is_active_action('pricing')}"
-        = link_to "Pricing",root_path
+        = link_to "Pricing","/pricing"
   li class="#{is_active_controller('reports')}"
-    = link_to root_path do
+    = link_to reports_path do
       i.fa.fa-file-text-o
       span.nav-label Reports
 - else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731080135) do
+ActiveRecord::Schema.define(version: 20170801123739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,26 @@ ActiveRecord::Schema.define(version: 20170731080135) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "message_templates", force: :cascade do |t|
+    t.string "name"
+    t.text "template"
+    t.integer "sort_order"
+    t.integer "restaurant_id"
+    t.integer "next_delay", default: 5
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.text "template"
+    t.string "recipent"
+    t.integer "message_type", default: 0
+    t.string "api_message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "plans", force: :cascade do |t|

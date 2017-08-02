@@ -24,7 +24,7 @@
       i.fa.fa-calendar
       span.nav-label Reservation
   li class="#{is_active_controller('messages')}"
-    = link_to root_path do
+    = link_to messages_path do
       i.fa.fa-envelope
       span.nav-label Messages
   li class="#{is_active_controller('settings')} #{is_active_controller('subscriptions')} #{is_active_action('pricing')}"

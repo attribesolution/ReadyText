@@ -1,4 +1,4 @@
-require 'clickatell_box'
+require 'ufone_sms_box'
 class Message < ApplicationRecord
   belongs_to :restaurant
   enum message_type: [:text_ready,:marketing]
@@ -8,7 +8,7 @@ class Message < ApplicationRecord
 
   def self.send_sms recipents,content,restaurant,message_type = 'marketing'
     sent_count = 0
-    message_sender = ClickatellBox.new
+    message_sender = UfoneSmsBox.new
     recipents.each_slice(100).to_a.each do |phones|
       response = message_sender.send_sms(phones,content)
       puts "response: #{response}"

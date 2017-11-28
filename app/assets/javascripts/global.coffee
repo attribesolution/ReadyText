@@ -37,6 +37,7 @@ App.signinFormValidator = ->
 
 #### signup form validations ####
 App.signUpFormValidator = ->
+  $('#current_time_zone').val('Karachi')
   App.applyIntlInput($("#user_phone"))
   # to set phone in proper format.
   setTimeout (->
